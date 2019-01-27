@@ -12,8 +12,14 @@ public class Player : MonoBehaviour {
     // Stores the jump force of the player
     private float jumpForce = 0f;
     [SerializeField]
-    // Stored the horizontal max speed of the player
+    // Stores the horizontal max speed of the player
     private float maxSpeed = 0f;
+    [SerializeField]
+    // Stores the fireball prefab
+    private GameObject fireBall;
+    [SerializeField]
+    // Stores the position to spawn fireball
+    private GameObject fireBallSpawn;
 
     // Stores the Player's RigidBody2D component that will be used to apply forces to our player
     private Rigidbody2D rb;
@@ -49,6 +55,19 @@ public class Player : MonoBehaviour {
         if (horizontalMovement != 0f) {
             // Stores if the player is walking
             walking = true;
+            // Verifies if the player is walking left
+            if (horizontalMovement < 0f) {
+                // Then check if the rotation in the Y axis is different from 180
+                if (transform.rotation.y != 180f)
+                    // If it's different, rotate the player
+                    transform.rotation = new Quaternion(0f, 180f, 0f, transform.rotation.w);
+            } else {
+                // Do the same thing here, but in this case we check if the player is walking to the right
+                // And if the rotation is equals to 0
+                if (transform.rotation.y != 0f)
+                    // If it's different, rotate the player
+                    transform.rotation = new Quaternion(0f, 0f, 0f, transform.rotation.w);
+            }
         } else {
             // Otherwise the player is not walking, so stores that to our variable
             walking = false;
@@ -56,6 +75,19 @@ public class Player : MonoBehaviour {
         // If the player's not pressing the jump button and he's on the ground, then the player isn't in the air
         if(onGround && !jumping) {
             onAir = false;
+        }
+        // If press the button E, then release the fireball
+        if (Input.GetKeyUp(KeyCode.E)) {
+            // Instantiate a new fireball
+            GameObject ball = Instantiate(fireBall);
+            // Set it's position to our spawn
+            ball.transform.position = new Vector2(fireBallSpawn.transform.position.x, fireBallSpawn.transform.position.y);
+            // If the player is facing right, then call the FireRight method from the fireball script
+            if (transform.rotation.y == 0f)
+                ball.GetComponent<Fireball>().FireRight();
+            // Otherwise, call the method FireLeft from the fireball script
+            else
+                ball.GetComponent<Fireball>().FireLeft();
         }
     }
 
