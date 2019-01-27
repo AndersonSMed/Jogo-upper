@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     private bool gamePaused = false;
     // Stores the actual life of our player
     private float actualLife;
+    // Stores if the player is alive
+    private bool playerAlive = true;
 
     // Getter of instance
     public static GameManager Instance {
@@ -33,6 +35,36 @@ public class GameManager : MonoBehaviour {
         }
         // This method is called for Unity to know that instance can't be destroyed when we change our scene
         DontDestroyOnLoad(instance);
+    }
+
+    private void Start() {
+        // Create a delegator to call everytime that our scene changed to a new scene
+        SceneManager.activeSceneChanged += ActiveSceneChanged;
+    }
+
+    private void ActiveSceneChanged(Scene current, Scene next) {
+        // When the new scene is called "Level1", call the ResetGame method
+        if (next.name == "Level1") {
+            ResetGame();
+        }
+    }
+
+    // Method called when the player dies
+    private void GameOver() {
+        SceneManager.LoadScene("GameOver");
+    }
+
+    // Method called when this gameobject is destroied
+    private void OnDestroy() {
+        // Remove the delegator from activeSceneChanged
+        SceneManager.activeSceneChanged -= ActiveSceneChanged;
+    }
+
+    // Method called to reset the game parameters
+    private void ResetGame() {
+        gamePaused = false;
+        actualLife = initialLife;
+        playerAlive = true;
     }
 
     // Method called when we need to pause our game
@@ -63,6 +95,9 @@ public class GameManager : MonoBehaviour {
     // Method called when we need to damage our player
     public void DamagePlayer(float damage) {
         actualLife -= damage;
+        if(actualLife <= 0) {
+            playerAlive = false;
+        }
     }
 
     // Returns the actual life of our player

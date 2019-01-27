@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUD : MonoBehaviour {
+    [SerializeField]
+    // Stores the life slider
+    private Slider lifeSlider;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Update() {
+        //Everyframe get the lifeslider value
+        lifeSlider.value = GameManager.Instance.GetLife();
+    }
+
 }
