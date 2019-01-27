@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Paralax
+    uniqueID: 3042261309
+    locked: 0
+  - name: Player
+    uniqueID: 634706955
+    locked: 0
+  - name: Platform
+    uniqueID: 1930865503
+    locked: 0
