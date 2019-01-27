@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 18668034}
   - component: {fileID: 18668033}
   - component: {fileID: 18668032}
+  - component: {fileID: 18668036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -188,12 +189,28 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 18668031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 1.22, z: -10}
+  m_LocalPosition: {x: 0.68, y: 1.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18668036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 18668031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aee599b4e9e624f4ea3bd78076004f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followObject: {fileID: 42402909}
+  cameraSpeed: 2
+  xOffset: 0
+  minX: -0.82
+  maxX: 2.19
 --- !u!1 &26646230
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +363,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!4 &42402909 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4134458772830152, guid: bd8081814dd7247409e363670d86eee6,
+    type: 2}
+  m_PrefabInternal: {fileID: 920426035}
 --- !u!1 &192981395
 GameObject:
   m_ObjectHideFlags: 0

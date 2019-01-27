@@ -40,6 +40,16 @@ public class GameManager : MonoBehaviour {
         gamePaused = true;
     }
 
+    // Change Scene to start the game
+    public void StartGame() {
+        SceneManager.LoadScene("Level1");
+    }
+
+    // Closes the game
+    public void ExitGame() {
+        Application.Quit();
+    }
+
     // Method called when our game is paused and we need to resume it
     public void ResumeGame() {
         gamePaused = false;
