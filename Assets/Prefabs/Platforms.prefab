@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4831901620865572}
   - component: {fileID: 212388109442418124}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908378875067818}
   - component: {fileID: 212726430027247606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4905884152342962}
   - component: {fileID: 212710757480804968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4662520227728948}
   - component: {fileID: 212257473191292478}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,9 +85,9 @@ GameObject:
   - component: {fileID: 4832206079468928}
   - component: {fileID: 61359857129187738}
   - component: {fileID: 251549932963363340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DefaultPlatform
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4592735307114946}
   - component: {fileID: 212328787250847584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4642346697872292}
   - component: {fileID: 212397996711852440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4126976307205738}
   - component: {fileID: 212507866621442426}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4091541797112256}
   - component: {fileID: 212231682350016130}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4504661177429314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,9 +181,9 @@ GameObject:
   - component: {fileID: 4493705576041350}
   - component: {fileID: 61765756819691722}
   - component: {fileID: 251160483263258262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DefaultPlatform 1
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4067115812166488}
   - component: {fileID: 212296559459470418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4371213492702526}
   - component: {fileID: 212157523097149680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,9 +229,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4886903710494320}
   - component: {fileID: 212995695698478376}
-  m_Layer: 0
+  - component: {fileID: 61533969618358054}
+  m_Layer: 8
   m_Name: BoxPlatform
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4915733219885610}
   - component: {fileID: 212337281362288890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4306536592232952}
   - component: {fileID: 212840689501285794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885702334387198}
   - component: {fileID: 212906024541139168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696455676053496}
   - component: {fileID: 212154119456270662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879182868561798}
   - component: {fileID: 212012379417749554}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4119058529123184}
   - component: {fileID: 212705515997149862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: jungle tileset_13 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,8 +438,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594879843329756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.336, y: 1.2005559, z: -9.941103}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4344951, y: -0.061330438, z: 0.002866745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4886903710494320}
@@ -635,6 +636,31 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.95, y: 0.23}
+  m_EdgeRadius: 0
+--- !u!61 &61533969618358054
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1666375821787030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7407407, y: 0.7407407}
+    newSize: {x: 0.7407407, y: 0.7407407}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7407407, y: 0.7407407}
   m_EdgeRadius: 0
 --- !u!61 &61765756819691722
 BoxCollider2D:
