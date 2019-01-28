@@ -20,6 +20,12 @@ public class Player : MonoBehaviour {
     [SerializeField]
     // Stores the position to spawn fireball
     private GameObject fireBallSpawn;
+    [SerializeField]
+    // Stores the fire cooldown
+    private float cooldown = 2f;
+    [SerializeField]
+    // Stores the fireball audioclip
+    private AudioClip fireBallClip;
 
     // Stores the Player's RigidBody2D component that will be used to apply forces to our player
     private Rigidbody2D rb;
@@ -31,6 +37,8 @@ public class Player : MonoBehaviour {
     private bool onGround = true;
     // If the player is walking, get the direction of the movement and stores here
     private float horizontalMovement;
+    // Stores if the player is firing a ball
+    private bool isFiring = false;
 
 	// When the component start call this method
 	private void Start () {
@@ -79,7 +87,7 @@ public class Player : MonoBehaviour {
                 onAir = false;
             }
             // If press the button E, then release the fireball
-            if (Input.GetKeyUp(KeyCode.E)) {
+            if (Input.GetAxis("Fire1") > 0f && !isFiring) {
                 // Instantiate a new fireball
                 GameObject ball = Instantiate(fireBall);
                 // Set it's position to our spawn
@@ -90,8 +98,19 @@ public class Player : MonoBehaviour {
                 // Otherwise, call the method FireLeft from the fireball script
                 else
                     ball.GetComponent<Fireball>().FireLeft();
+                //Set isFiring to true
+                isFiring = true;
+                //Calls the SoundManager to play the Fireball AudioClip
+                SoundManager.Instance.PlaySFX(fireBallClip);
+                // Calls the method to reset cooldown in x seconds
+                Invoke("CoolDownFire", cooldown);
             }
         }
+    }
+
+    // This method is called everytime the player use a fireball
+    private void CoolDownFire() {
+        isFiring = false;
     }
 
     // This function is called a fixed number of times per frames

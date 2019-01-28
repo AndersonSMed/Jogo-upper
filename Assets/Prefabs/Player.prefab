@@ -133,6 +133,8 @@ MonoBehaviour:
   maxSpeed: 6
   fireBall: {fileID: 1956621286186528, guid: 1c0aac8cd1c703448a44782b0915e40f, type: 2}
   fireBallSpawn: {fileID: 1989362305936154}
+  cooldown: 2
+  fireBallClip: {fileID: 8300000, guid: abe7d2020a7bbae4fa1de686a9e9bb2c, type: 3}
 --- !u!212 &212851165070155732
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -10,11 +10,17 @@ public class HUD : MonoBehaviour {
     [SerializeField]
     // Stores the pause screen
     private GameObject pauseScreen;
+    [SerializeField]
+    private Text timeLeftText;
+    [SerializeField]
+    private Text enemiesLeftText;
 
     private void Update() {
         //Everyframe get the lifeslider value
         lifeSlider.value = GameManager.Instance.GetLife();
         pauseScreen.SetActive(GameManager.Instance.IsGamePaused());
+        timeLeftText.text = "Time left: " + GameManager.Instance.GetTimeLeft() + "s";
+        enemiesLeftText.text = "Enemies left: " + GameManager.Instance.GetEnemiesLeft();
     }
 
     // Method called to resume game

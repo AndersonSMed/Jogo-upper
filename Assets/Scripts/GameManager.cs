@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     // Stores the key that will be used to pause and unpause the game
     private KeyCode pauseKey;
+    [SerializeField]
+    // Stores the initial time left to win the game
+    private float initialTimeLeft = 60f;
 
     // Stores if the game is paused
     private bool gamePaused = false;
@@ -21,6 +24,10 @@ public class GameManager : MonoBehaviour {
     private float actualLife;
     // Stores if the game is already started
     private bool gameStarted = false;
+    // Stores the actual time left to win the game
+    private float timeLeft;
+    // Stores the number of enemies left to win the game
+    private int enemiesLeft = 0;
 
     // Getter of instance
     public static GameManager Instance {
@@ -43,9 +50,6 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         // Create a delegator to call everytime that our scene changed to a new scene
         SceneManager.activeSceneChanged += ActiveSceneChanged;
-        // Starts the actual life with the life defined before as initial
-        actualLife = initialLife;
-        gameStarted = true;
     }
 
     private void Update() {
@@ -59,8 +63,26 @@ public class GameManager : MonoBehaviour {
         // When the new scene is called "Level1", call the ResetGame method
         if (next.name == "Level1") {
             ResetGame();
+            Invoke("DecreaseTimer", 1f);
         } else {
             gameStarted = false;
+        }
+    }
+
+    // Method called every 1 second to decrease the timer
+    private void DecreaseTimer() {
+        // If game is started and theres time left
+        if (gameStarted && timeLeft > 0) {
+            // And the game is not paused
+            if (!gamePaused) {
+                // Decrease the time left
+                timeLeft--;
+                // If time left and enemies left are equals to zero, then the player wins
+                if(timeLeft == 0 && enemiesLeft == 0) {
+                    GameOver();
+                }
+            }
+            Invoke("DecreaseTimer", 1f);
         }
     }
 
@@ -77,8 +99,10 @@ public class GameManager : MonoBehaviour {
 
     // Method called to reset the game parameters
     private void ResetGame() {
+        gameStarted = true;
         gamePaused = false;
         actualLife = initialLife;
+        timeLeft = initialTimeLeft;
     }
 
     // Method called when we need to pause our game
@@ -89,6 +113,24 @@ public class GameManager : MonoBehaviour {
     // Change Scene to start the game
     public void StartGame() {
         SceneManager.LoadScene("Level1");
+    }
+
+    // Method called to update the enemies left
+    public void ChangeEnemiesLeft(int enemies) {
+        enemiesLeft = enemies;
+        // If the enemies left is zero and time left is zero
+        if (enemiesLeft == 0 && timeLeft == 0) {
+            // Then the player wins
+            GameOver();
+        }
+    }
+
+    public int GetEnemiesLeft() {
+        return enemiesLeft;
+    }
+
+    public float GetTimeLeft() {
+        return timeLeft;
     }
 
     // Method called when we need to change to menu scene
