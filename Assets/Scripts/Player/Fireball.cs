@@ -15,13 +15,34 @@ public class Fireball : MonoBehaviour {
     private Rigidbody2D rb;
     // Stores the SpriteRenderer component that will be used to flip the sprite
     private SpriteRenderer sr;
-
+    // Stores the bullet's velocity if the game is paused
+    private Vector2 lastSpeed;
 
     // When the component is created, call this method
     private void Awake() {
         // Get the components and store in our attributes
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+    }
+
+    public void Update() {
+        // Check if the game is paused
+        if (GameManager.Instance.IsGamePaused()) {
+            // If it paused and the bullet is moving
+            if (rb.velocity != Vector2.zero) {
+                // Stores the last velocity
+                lastSpeed = rb.velocity;
+                // And reset it to zero
+                rb.velocity = Vector2.zero;
+            }
+            // If the game was resumed
+        } else {
+            // And the actual velocity is 0
+            if(rb.velocity == Vector2.zero) {
+                // Then load the backup velocity
+                rb.velocity = lastSpeed;
+            }
+        }
     }
 
     // Method called when we need to fire to the right

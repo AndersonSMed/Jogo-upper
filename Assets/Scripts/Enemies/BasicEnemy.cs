@@ -21,8 +21,6 @@ public class BasicEnemy : MonoBehaviour {
     private float actualLife;
     // Stores the moving direction of our enemy
     private Vector2 movingDirection;
-    // Stores the enemy's Rigidbody2D
-    private Rigidbody2D rb;
     // If the player is right in our front, set this attribute to true
     private bool playerOnSight = false;
 
@@ -35,7 +33,6 @@ public class BasicEnemy : MonoBehaviour {
             movingDirection = Vector2.right;
         else
             movingDirection = Vector2.left;
-        rb = GetComponent<Rigidbody2D>();
 	}
 	
     //This script is called everytime the enemy takes damage

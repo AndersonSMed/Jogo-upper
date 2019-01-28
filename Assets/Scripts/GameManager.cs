@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     // Stores the initial life of our player
     private float initialLife = 10f;
+    [SerializeField]
+    // Stores the key that will be used to pause and unpause the game
+    private KeyCode pauseKey;
 
     // Stores if the game is paused
     private bool gamePaused = false;
     // Stores the actual life of our player
     private float actualLife;
+    // Stores if the game is already started
+    private bool gameStarted = false;
 
     // Getter of instance
     public static GameManager Instance {
@@ -40,12 +45,22 @@ public class GameManager : MonoBehaviour {
         SceneManager.activeSceneChanged += ActiveSceneChanged;
         // Starts the actual life with the life defined before as initial
         actualLife = initialLife;
+        gameStarted = true;
+    }
+
+    private void Update() {
+        //  Verifies if the game has started and can be paused
+        if (Input.GetKeyUp(pauseKey) && gameStarted) {
+            gamePaused = !gamePaused;
+        }
     }
 
     private void ActiveSceneChanged(Scene current, Scene next) {
         // When the new scene is called "Level1", call the ResetGame method
         if (next.name == "Level1") {
             ResetGame();
+        } else {
+            gameStarted = false;
         }
     }
 
@@ -74,6 +89,11 @@ public class GameManager : MonoBehaviour {
     // Change Scene to start the game
     public void StartGame() {
         SceneManager.LoadScene("Level1");
+    }
+
+    // Method called when we need to change to menu scene
+    public void LoadMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 
     // Closes the game
