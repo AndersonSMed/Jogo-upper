@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 1065233354}
   - component: {fileID: 1065233355}
   m_Layer: 5
-  m_Name: MusicSlider
+  m_Name: MusicVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1535899181}
-        m_MethodName: StartGame
+        m_MethodName: LoadAudioOptions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1587,6 +1587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2e6c091b1bc8a4497fa500ad00e72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuScreen: {fileID: 1260111372}
+  audioMenuScreen: {fileID: 1625899782}
+  musicVolume: {fileID: 1065233355}
+  sfxVolume: {fileID: 332619125}
 --- !u!1 &1554849021
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,7 +2214,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1535899181}
-        m_MethodName: StartGame
+        m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

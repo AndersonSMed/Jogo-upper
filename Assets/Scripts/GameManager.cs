@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("GameOver");
     }
 
+    // Method called when the player wins the game
+    private void YouWin() {
+        SceneManager.LoadScene("YouWin");
+    }
+
     // Method called when this gameobject is destroied
     private void OnDestroy() {
         // Remove the delegator from activeSceneChanged
@@ -121,7 +126,7 @@ public class GameManager : MonoBehaviour {
         // If the enemies left is zero and time left is zero
         if (enemiesLeft == 0 && timeLeft == 0) {
             // Then the player wins
-            GameOver();
+            YouWin();   
         }
     }
 
@@ -157,7 +162,7 @@ public class GameManager : MonoBehaviour {
     public void DamagePlayer(float damage) {
         actualLife -= damage;
         if(actualLife <= 0) {
-            GameOver();
+            YouWin();
         }
     }
 
