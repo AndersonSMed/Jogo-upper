@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 18668034}
   - component: {fileID: 18668033}
   - component: {fileID: 18668032}
+  - component: {fileID: 18668036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -188,12 +189,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 18668031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68, y: 1.22, z: -10}
+  m_LocalPosition: {x: 0.02, y: 1.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &18668036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 18668031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b486f89bbbf975c4783afe83658f7dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 137361533}
+  smoothSpeed: 2
+  minX: -0.82
+  maxX: 2.18
 --- !u!1 &26646230
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,6 +392,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.26666668, y: 0.56666666}
   m_EdgeRadius: 0
+--- !u!4 &137361533 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4134458772830152, guid: bd8081814dd7247409e363670d86eee6,
+    type: 2}
+  m_PrefabInternal: {fileID: 920426035}
 --- !u!1 &192981395
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +808,10 @@ Prefab:
     - target: {fileID: 1491603604754376, guid: 2f092477c69e6fd458c666796f9b3226, type: 2}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419046427858218, guid: 2f092477c69e6fd458c666796f9b3226, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f092477c69e6fd458c666796f9b3226, type: 2}

@@ -36,10 +36,14 @@ public class SpawnManager : MonoBehaviour {
         if (GameManager.Instance.IsGamePaused()) {
             Invoke("SpawnEnemy", spawnRate);
         } else {
+            // Create a new enemy
             GameObject enemy = Instantiate(enemyPrefab);
+            // Then take a random spawn and set the enemy's position to it
             GameObject spawn = spawns[Random.Range(0, spawns.Length - 1)];
-            enemies.Add(enemy);
             enemy.transform.position = new Vector2(spawn.transform.position.x, spawn.transform.position.y);
+            // And store the enemy in the enemies list
+            enemies.Add(enemy);
+            // Call this method again, at a spawnRate seconds
             Invoke("SpawnEnemy", spawnRate);
         }
     }
