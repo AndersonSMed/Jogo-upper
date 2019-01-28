@@ -83,7 +83,8 @@ public class BasicEnemy : MonoBehaviour {
     private void FixedUpdate() {
         // If the game isn't paused, verify if the player is right in front of our enemy
         // If it isn't, sets the enemy to the default behaviour, wich is moving from side to side of the screen
-        if (!GameManager.Instance.IsGamePaused()) {
+        if (!GameManager.Instance.IsGamePaused() && !anim.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals("Attacking")) {
+            attacking = false;
             if (!playerOnSight)
                 transform.position += (Vector3)movingDirection * speed * Time.deltaTime;
         }
@@ -91,17 +92,15 @@ public class BasicEnemy : MonoBehaviour {
 
     // This method is called when the player is in front of our enemy
     private void AttackPlayer() {
-        if (playerOnSight) {
-            // If the game is paused, wait it to resume to attack the player
-            if (GameManager.Instance.IsGamePaused()) {
-                Invoke("AttackPlayer", timeToAttack);
-            } else {
-                SoundManager.Instance.PlayEnemySFX(swordSfxClip);
+        // If the game is paused, wait it to resume to attack the player
+        if (GameManager.Instance.IsGamePaused()) {
+            Invoke("AttackPlayer", timeToAttack);
+        } else {
+            SoundManager.Instance.PlayEnemySFX(swordSfxClip);
+            if (playerOnSight) {
                 GameManager.Instance.DamagePlayer(damage);
                 Invoke("AttackPlayer", timeToAttack);
             }
-        } else {
-            attacking = false;
         }
     }
 
