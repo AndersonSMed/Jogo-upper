@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour {
     private bool gamePaused = false;
     // Stores the actual life of our player
     private float actualLife;
-    // Stores if the player is alive
-    private bool playerAlive = true;
 
     // Getter of instance
     public static GameManager Instance {
@@ -40,6 +38,8 @@ public class GameManager : MonoBehaviour {
     private void Start() {
         // Create a delegator to call everytime that our scene changed to a new scene
         SceneManager.activeSceneChanged += ActiveSceneChanged;
+        // Starts the actual life with the life defined before as initial
+        actualLife = initialLife;
     }
 
     private void ActiveSceneChanged(Scene current, Scene next) {
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour {
     private void ResetGame() {
         gamePaused = false;
         actualLife = initialLife;
-        playerAlive = true;
     }
 
     // Method called when we need to pause our game
@@ -96,7 +95,7 @@ public class GameManager : MonoBehaviour {
     public void DamagePlayer(float damage) {
         actualLife -= damage;
         if(actualLife <= 0) {
-            playerAlive = false;
+            GameOver();
         }
     }
 

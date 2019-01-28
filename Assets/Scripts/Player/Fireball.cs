@@ -7,6 +7,9 @@ public class Fireball : MonoBehaviour {
     [SerializeField]
     // Sets the speed of the fireball
     private float speed = 2f;
+    [SerializeField]
+    // Sets the damage the fireball will cause
+    private float damage = 2f;
 
     // Stores the Rigidbody2D component
     private Rigidbody2D rb;
@@ -38,6 +41,12 @@ public class Fireball : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
         // If any collision with the scenario happens, destroy this object
         if(collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Floor")) {
+            Destroy(gameObject);
+        }
+        // Verifies if the collision ocurred with one enemy
+        if (collision.gameObject.CompareTag("Enemy")) {
+            // Deal damage to that enemy
+            collision.gameObject.GetComponent<BasicEnemy>().DealDamage(damage);
             Destroy(gameObject);
         }
     }
