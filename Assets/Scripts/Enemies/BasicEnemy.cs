@@ -16,9 +16,14 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField]
     // Damage the enemy will do to our player
     private float damage = 1;
+    [SerializeField]
+    // Stores the sword SFX
+    private AudioClip swordSfxClip;
 
     // Store the actual life
     private float actualLife;
+    // Stores the animator component of the player
+    private Animator anim;
     // Stores the moving direction of our enemy
     private Vector2 movingDirection;
     // If the player is right in our front, set this attribute to true
@@ -27,7 +32,8 @@ public class BasicEnemy : MonoBehaviour {
 	private void Start () {
         // Sets the enemy actual life to initial life
         actualLife = initialLife;
-
+        // Gets the animator component and stores it
+        anim = GetComponent<Animator>();
         // The enemy starts with a 50% chance of walking to the left and 50% of walking to the right
         if (Random.Range(0, 100) > 50)
             movingDirection = Vector2.right;
@@ -39,13 +45,22 @@ public class BasicEnemy : MonoBehaviour {
 	public void DealDamage(float damage) {
         // Decreases actual life in damage, if actualLife is less then or equals to zero, then destroy the enemy
         actualLife -= damage;
-        if (actualLife <= 0f)
-            Destroy(gameObject);
+        if (actualLife <= 0f) {
+            anim.SetBool("Dying", true);
+            Invoke("SelfDestroy", 4f);
+        }
+    }
+
+    // Method called when the enemy dies
+    private void SelfDestroy() {
+        Destroy(gameObject);
     }
 
     private void Update() {
+        //Stop the animation if the game is paused
+        anim.speed = (GameManager.Instance.IsGamePaused()) ? 0f : 1f;
         // If the game is not paused, verify if the enemy is facing the right direction
-        if (!GameManager.Instance.IsGamePaused()) {
+        if (!GameManager.Instance.IsGamePaused() && !anim.GetBool("Dying")) {
             if (movingDirection == Vector2.right && transform.rotation.y != 0f)
                 transform.rotation = new Quaternion(0f, 0f, 0f, transform.rotation.w);
             else if (movingDirection == Vector2.left && transform.rotation.y != 180f)
@@ -56,7 +71,7 @@ public class BasicEnemy : MonoBehaviour {
     private void FixedUpdate() {
         // If the game isn't paused, verify if the player is right in front of our enemy
         // If it isn't, sets the enemy to the default behaviour, wich is moving from side to side of the screen
-        if (!GameManager.Instance.IsGamePaused()) {
+        if (!GameManager.Instance.IsGamePaused() && !anim.GetBool("Dying")) {
             if (!playerOnSight)
                 transform.position += (Vector3)movingDirection * speed * Time.deltaTime;
         }
@@ -68,9 +83,11 @@ public class BasicEnemy : MonoBehaviour {
             // If the game is paused, wait it to resume to attack the player
             if (GameManager.Instance.IsGamePaused()) {
                 Invoke("AttackPlayer", timeToAttack);
+            } else {
+                SoundManager.Instance.PlaySFX(swordSfxClip);
+                GameManager.Instance.DamagePlayer(damage);
+                Invoke("AttackPlayer", timeToAttack);
             }
-            GameManager.Instance.DamagePlayer(damage);
-            Invoke("AttackPlayer", timeToAttack);
         }
     }
 
@@ -86,6 +103,7 @@ public class BasicEnemy : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             playerOnSight = true;
+            anim.SetBool("Attacking", true);
             Invoke("AttackPlayer", timeToAttack);
         }
     }
@@ -94,6 +112,7 @@ public class BasicEnemy : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
             playerOnSight = false;
+            anim.SetBool("Attacking", false);
         }
     }
 }

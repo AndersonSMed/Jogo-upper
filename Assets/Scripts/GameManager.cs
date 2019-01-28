@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
                 timeLeft--;
                 // If time left and enemies left are equals to zero, then the player wins
                 if(timeLeft == 0 && enemiesLeft == 0) {
-                    GameOver();
+                    YouWin();
                 }
             }
             Invoke("DecreaseTimer", 1f);
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour {
     public void DamagePlayer(float damage) {
         actualLife -= damage;
         if(actualLife <= 0) {
-            YouWin();
+            GameOver();
         }
     }
 

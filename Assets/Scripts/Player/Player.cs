@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
 
     // Stores the Player's RigidBody2D component that will be used to apply forces to our player
     private Rigidbody2D rb;
+    // Stores the animator component of the player
+    private Animator anim;
     // Stores if the player is walking or jumping
     private bool walking, jumping;
     // Stores if the player is on air
@@ -44,10 +46,14 @@ public class Player : MonoBehaviour {
 	private void Start () {
         // And get component Rigidbody2d from the GameObject and stores it
         rb = GetComponent<Rigidbody2D>();
+        // Gets the animator component and stores it
+        anim = GetComponent<Animator>();
 	}
 
     // This function is called once per frame
     private void Update () {
+        //Stop the animation if the game is paused
+        anim.speed = (GameManager.Instance.IsGamePaused()) ? 0f : 1f;
         // Verify if the game is paused
         if (!GameManager.Instance.IsGamePaused()) {
             // Inputs are used to create multiple forms to control the game
@@ -65,6 +71,8 @@ public class Player : MonoBehaviour {
             if (horizontalMovement != 0f) {
                 // Stores if the player is walking
                 walking = true;
+                // Set player walking animation to true
+                anim.SetBool("Walking", true);
                 // Verifies if the player is walking left
                 if (horizontalMovement < 0f) {
                     // Then check if the rotation in the Y axis is different from 180
@@ -81,6 +89,8 @@ public class Player : MonoBehaviour {
             } else {
                 // Otherwise the player is not walking, so stores that to our variable
                 walking = false;
+                // Set player walking animation to false
+                anim.SetBool("Walking", false);
             }
             // If the player's not pressing the jump button and he's on the ground, then the player isn't in the air
             if (onGround && !jumping) {
@@ -88,24 +98,34 @@ public class Player : MonoBehaviour {
             }
             // If press the button E, then release the fireball
             if (Input.GetAxis("Fire1") > 0f && !isFiring) {
-                // Instantiate a new fireball
-                GameObject ball = Instantiate(fireBall);
-                // Set it's position to our spawn
-                ball.transform.position = new Vector2(fireBallSpawn.transform.position.x, fireBallSpawn.transform.position.y);
-                // If the player is facing right, then call the FireRight method from the fireball script
-                if (transform.rotation.y == 0f)
-                    ball.GetComponent<Fireball>().FireRight();
-                // Otherwise, call the method FireLeft from the fireball script
-                else
-                    ball.GetComponent<Fireball>().FireLeft();
+                // Starts the attacking animation
+                anim.SetBool("Attacking", true);
                 //Set isFiring to true
                 isFiring = true;
-                //Calls the SoundManager to play the Fireball AudioClip
-                SoundManager.Instance.PlaySFX(fireBallClip);
-                // Calls the method to reset cooldown in x seconds
-                Invoke("CoolDownFire", cooldown);
+                // Call the method FireBall when the animation of attacking is ended
+                Invoke("FireBall", 0.5f);
+            } else {
+                // The player is not attacking
+                anim.SetBool("Attacking", false);
             }
         }
+    }
+
+    private void FireBall() {
+        // Instantiate a new fireball
+        GameObject ball = Instantiate(fireBall);
+        // Set it's position to our spawn
+        ball.transform.position = new Vector2(fireBallSpawn.transform.position.x, fireBallSpawn.transform.position.y);
+        // If the player is facing right, then call the FireRight method from the fireball script
+        if (transform.rotation.y == 0f)
+            ball.GetComponent<Fireball>().FireRight();
+        // Otherwise, call the method FireLeft from the fireball script
+        else
+            ball.GetComponent<Fireball>().FireLeft();
+        //Calls the SoundManager to play the Fireball AudioClip
+        SoundManager.Instance.PlaySFX(fireBallClip);
+        // Calls the method to reset cooldown in x seconds
+        Invoke("CoolDownFire", cooldown);
     }
 
     // This method is called everytime the player use a fireball
