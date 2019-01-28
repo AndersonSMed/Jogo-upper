@@ -46,21 +46,15 @@ public class BasicEnemy : MonoBehaviour {
         // Decreases actual life in damage, if actualLife is less then or equals to zero, then destroy the enemy
         actualLife -= damage;
         if (actualLife <= 0f) {
-            anim.SetBool("Dying", true);
-            Invoke("SelfDestroy", 4f);
+            Destroy(gameObject);
         }
-    }
-
-    // Method called when the enemy dies
-    private void SelfDestroy() {
-        Destroy(gameObject);
     }
 
     private void Update() {
         //Stop the animation if the game is paused
         anim.speed = (GameManager.Instance.IsGamePaused()) ? 0f : 1f;
         // If the game is not paused, verify if the enemy is facing the right direction
-        if (!GameManager.Instance.IsGamePaused() && !anim.GetBool("Dying")) {
+        if (!GameManager.Instance.IsGamePaused()) {
             if (movingDirection == Vector2.right && transform.rotation.y != 0f)
                 transform.rotation = new Quaternion(0f, 0f, 0f, transform.rotation.w);
             else if (movingDirection == Vector2.left && transform.rotation.y != 180f)
@@ -71,7 +65,7 @@ public class BasicEnemy : MonoBehaviour {
     private void FixedUpdate() {
         // If the game isn't paused, verify if the player is right in front of our enemy
         // If it isn't, sets the enemy to the default behaviour, wich is moving from side to side of the screen
-        if (!GameManager.Instance.IsGamePaused() && !anim.GetBool("Dying")) {
+        if (!GameManager.Instance.IsGamePaused()) {
             if (!playerOnSight)
                 transform.position += (Vector3)movingDirection * speed * Time.deltaTime;
         }
