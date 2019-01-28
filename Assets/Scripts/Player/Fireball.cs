@@ -10,6 +10,9 @@ public class Fireball : MonoBehaviour {
     [SerializeField]
     // Sets the damage the fireball will cause
     private float damage = 2f;
+    [SerializeField]
+    // Stores the explosion sound clip
+    private AudioClip explosionSoundClip;
 
     // Stores the Rigidbody2D component
     private Rigidbody2D rb;
@@ -68,6 +71,7 @@ public class Fireball : MonoBehaviour {
         if (collision.gameObject.CompareTag("Enemy")) {
             // Deal damage to that enemy
             collision.gameObject.GetComponent<BasicEnemy>().DealDamage(damage);
+            SoundManager.Instance.PlaySFX(explosionSoundClip);
             Destroy(gameObject);
         }
     }

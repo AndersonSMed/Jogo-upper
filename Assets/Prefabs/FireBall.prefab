@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  damage: 2
+  explosionSoundClip: {fileID: 8300000, guid: 93034c467d8c4924294a0e6ef446ef9b, type: 3}
 --- !u!212 &212411288034070736
 SpriteRenderer:
   m_ObjectHideFlags: 1

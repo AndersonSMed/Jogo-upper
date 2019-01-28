@@ -33,17 +33,23 @@ public class BasicEnemy : MonoBehaviour {
     private bool playerOnSight = false;
     // Stores if the enemy is attacking
     private bool attacking = false;
+    // Stores the indivdual audio source
+    private AudioSource audioSource;
 
 	private void Start () {
         // Sets the enemy actual life to initial life
         actualLife = initialLife;
         // Gets the animator component and stores it
         anim = GetComponent<Animator>();
+        // Gets the audio source component and stores it
+        audioSource = GetComponent<AudioSource>();
         // The enemy starts with a 50% chance of walking to the left and 50% of walking to the right
         if (Random.Range(0, 100) > 50)
             movingDirection = Vector2.right;
         else
             movingDirection = Vector2.left;
+        // Get audio source volume from sound manager
+        audioSource.volume = SoundManager.Instance.GetSFXVolume();
 	}
 	
     //This script is called everytime the enemy takes damage
@@ -57,6 +63,8 @@ public class BasicEnemy : MonoBehaviour {
     }
 
     private void Update() {
+        // Get audio source volume from sound manager
+        audioSource.volume = SoundManager.Instance.GetSFXVolume();
         //Stop the animation if the game is paused
         anim.speed = (GameManager.Instance.IsGamePaused()) ? 0f : 1f;
         // If the game is not paused, verify if the enemy is facing the right direction
