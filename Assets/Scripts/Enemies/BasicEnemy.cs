@@ -31,6 +31,8 @@ public class BasicEnemy : MonoBehaviour {
     private Vector2 movingDirection;
     // If the player is right in our front, set this attribute to true
     private bool playerOnSight = false;
+    // Stores if the enemy is attacking
+    private bool attacking = false;
 
 	private void Start () {
         // Sets the enemy actual life to initial life
@@ -63,6 +65,10 @@ public class BasicEnemy : MonoBehaviour {
                 transform.rotation = new Quaternion(0f, 0f, 0f, transform.rotation.w);
             else if (movingDirection == Vector2.left && transform.rotation.y != 180f)
                 transform.rotation = new Quaternion(0f, 180f, 0f, transform.rotation.w);
+            if (playerOnSight && !attacking) {
+                attacking = true;
+                Invoke("AttackPlayer", timeToAttack);
+            }
         }
     }
 
@@ -86,6 +92,8 @@ public class BasicEnemy : MonoBehaviour {
                 GameManager.Instance.DamagePlayer(damage);
                 Invoke("AttackPlayer", timeToAttack);
             }
+        } else {
+            attacking = false;
         }
     }
 
@@ -102,7 +110,6 @@ public class BasicEnemy : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player")) {
             playerOnSight = true;
             anim.SetBool("Attacking", true);
-            Invoke("AttackPlayer", timeToAttack);
         }
     }
 

@@ -311,7 +311,7 @@ MonoBehaviour:
   initialLife: 4
   speed: 0.5
   timeToAttack: 1.07
-  damage: 0.5
+  damage: 1
   swordSfxClip: {fileID: 8300000, guid: 13ae8823142382f4fa16acab157794c3, type: 3}
   dyingSfx: {fileID: 8300000, guid: 23ed0807f0db60c4bb1c4900cc0a984d, type: 3}
 --- !u!212 &212830778507148888
