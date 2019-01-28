@@ -67,8 +67,7 @@ public class BasicEnemy : MonoBehaviour {
         if (playerOnSight) {
             // If the game is paused, wait it to resume to attack the player
             if (GameManager.Instance.IsGamePaused()) {
-                AttackPlayer();
-                return;
+                Invoke("AttackPlayer", timeToAttack);
             }
             GameManager.Instance.DamagePlayer(damage);
             Invoke("AttackPlayer", timeToAttack);
