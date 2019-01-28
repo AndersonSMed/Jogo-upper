@@ -19,6 +19,9 @@ public class BasicEnemy : MonoBehaviour {
     [SerializeField]
     // Stores the sword SFX
     private AudioClip swordSfxClip;
+    [SerializeField]
+    // Stores the diying SFX
+    private AudioClip dyingSfx;
 
     // Store the actual life
     private float actualLife;
@@ -46,6 +49,7 @@ public class BasicEnemy : MonoBehaviour {
         // Decreases actual life in damage, if actualLife is less then or equals to zero, then destroy the enemy
         actualLife -= damage;
         if (actualLife <= 0f) {
+            SoundManager.Instance.PlayEnemySFX(dyingSfx);
             Destroy(gameObject);
         }
     }
@@ -78,7 +82,7 @@ public class BasicEnemy : MonoBehaviour {
             if (GameManager.Instance.IsGamePaused()) {
                 Invoke("AttackPlayer", timeToAttack);
             } else {
-                SoundManager.Instance.PlaySFX(swordSfxClip);
+                SoundManager.Instance.PlayEnemySFX(swordSfxClip);
                 GameManager.Instance.DamagePlayer(damage);
                 Invoke("AttackPlayer", timeToAttack);
             }

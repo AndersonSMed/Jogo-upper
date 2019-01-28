@@ -12,6 +12,9 @@ public class SoundManager : MonoBehaviour {
     [SerializeField]
     // Stores a global sfx source to our project
     private AudioSource sfxSource;
+    [SerializeField]
+    // Stores a global enemies sfx source to our project
+    private AudioSource enemySfxSource;
 
     // Return the instance
     public static SoundManager Instance {
@@ -30,11 +33,22 @@ public class SoundManager : MonoBehaviour {
         DontDestroyOnLoad(instance);
     }
 
+    private void Update() {
+        enemySfxSource.volume = sfxSource.volume;
+    }
+
     // Play a audio clip in the SFX source
     public void PlaySFX(AudioClip clip) {
         sfxSource.Stop();
         sfxSource.clip = clip;
         sfxSource.Play();
+    }
+
+    // Play a audio clip in the SFX source
+    public void PlayEnemySFX(AudioClip clip) {
+        enemySfxSource.Stop();
+        enemySfxSource.clip = clip;
+        enemySfxSource.Play();
     }
 
     // Gets the actual music volume
